@@ -20,7 +20,7 @@ gh_stars <- function(n = 100) {
           lubridate::ymd_hms(),
         description = x$description,
         url = x$html_url,
-        topics = x$topics,
+        topics = list(x$topics),
         n_stargazers = x$stargazers_count,
         archived = x$archived,
         disabled = x$disabled
