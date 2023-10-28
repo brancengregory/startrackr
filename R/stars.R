@@ -1,7 +1,7 @@
 #' @title gh_stars
-#' 
+#'
 #'@export
-#' 
+#'
 gh_stars <- function(n = 100) {
   res <- gh::gh(
     "/user/starred",
@@ -20,6 +20,7 @@ gh_stars <- function(n = 100) {
           lubridate::ymd_hms(),
         description = x$description,
         url = x$html_url,
+        topics = x$topics,
         n_stargazers = x$stargazers_count,
         archived = x$archived,
         disabled = x$disabled
@@ -43,9 +44,9 @@ gh_stars <- function(n = 100) {
 }
 
 #' @title gh_starred_r_packages
-#' 
+#'
 #' @export
-#' 
+#'
 gh_starred_r_packages <- function(n) {
   gh_stars(n) |>
     dplyr::filter(
@@ -54,9 +55,9 @@ gh_starred_r_packages <- function(n) {
 }
 
 #' @title gh_description_file
-#' 
+#'
 #' @export
-#' 
+#'
 gh_description_file <- function(owner, name) {
   res <- gh::gh(
     "/repos/:owner/:name/contents/:file",
